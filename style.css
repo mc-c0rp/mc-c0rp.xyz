@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+.prompt-light {
+    font-family: "Prompt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.prompt-regular {
+    font-family: "Prompt", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.prompt-medium {
+    font-family: "Prompt", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.prompt-semibold {
+    font-family: "Prompt", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.prompt-bold {
+    font-family: "Prompt", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+h2{
+    font-family: "Prompt", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 32px;
+}
+
+h1 {
+    font-family: "Prompt", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 50px;
+}
+
+p{
+    font-family: "Prompt", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    padding: 10px;
+    background-color: rgb(18, 18, 18);
+    color: rgb(183, 183, 183);
+}
+
+.hello {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10rem;
+}
+
+.description{
+    padding: 10px;
+    width: 20rem;
+}
+
+.title{
+    padding: 10px;
+}
+
+.projects{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.item{
+    padding: 10px;
+}
+
+.item-description{
+    width: 15rem;
+}
+
+.name{
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.title{
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+a{
+    color: rgb(183, 183, 183);
+    transition: color 0.35s linear;
+}
+
+a:hover {
+    color: rgba(255, 255, 255, 0.903);
+}
+
+.hide{
+    color: rgba(255, 255, 255, 0);
+    user-select: none;
+    -webkit-user-select: none;
+}
