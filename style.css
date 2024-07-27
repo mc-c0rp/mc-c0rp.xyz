@@ -111,3 +111,8 @@ a:hover {
     user-select: none;
     -webkit-user-select: none;
 }
+
+::selection {
+    background: #c9c9c9; /* Цвет фона */
+    color: #000000; /* Цвет текста */
+   }
