@@ -2,16 +2,55 @@
     "name": "mc_c0rp",
     "subtitle": "Того маму ебал.",
     "description": "Это короче самвый ахуителный источник в AltStore, я того маму ебал.",
-    "iconURL": "https://example.com/source_icon.png",
-    "headerURL": "https://example.com/source_header.png",
-    "website": "https://example.com",
-    "patreonURL": "https://patreon.com/mycampaign",
-    "tintColor": "#F54F32",
+    "iconURL": "https://mc-c0rp.github.com/logo.png",
+    "headerURL": "https://mc-c0rp.github.com/bg.png",
+    "website": "https://mc-c0rp.github.com/",
+    "patreonURL": "",
+    "tintColor": "#FFF",
     "featuredApps": [
-      "com.example.myapp",
-      "com.example.anotherapp"
+      "mc-c0rp.iot"
     ],
-    "apps": [],
+    "apps": [
+    {
+        "name": "iOT",
+        "bundleIdentifier": "mc-c0rp.iot",
+        "marketplaceID": "",
+        "developerName": "mc_c0rp",
+        "subtitle": "Самая ахуителная прога в мире.",
+        "localizedDescription": "Прога для управления самокатами.",
+        "iconURL": "https://mc-c0rp.github.io/app.png",
+        "tintColor": "#FFF",
+        "category": "utilities",
+        "screenshots": [
+            "https://mc-c0rp.github.io/screenshot1.png",
+            "https://mc-c0rp.github.io/screenshot2.png"
+        ],
+        "versions": [
+  {
+    "version": "1.0",
+    "buildVersion": "1",
+    "date": "2025-01-07",
+    "localizedDescription": "да ну наху релиз.",
+    "downloadURL": "https://mc-c0rp.github.com/iot-1-0.ipa",
+    "minOSVersion": "12.0",
+    "maxOSVersion": "18.3"
+  },
+]
+,
+        "appPermissions": {
+  "entitlements": [
+    "com.apple.security.application-groups",
+    "com.apple.developer.siri"
+  ],
+  "privacy": {
+    "NSMicrophoneUsageDescription": "App uses the microphone to record audio.",
+    "NSCameraUsageDescription": "App uses the camera to take photos."
+  }
+},
+,
+        "patreon": {},
+    },
+    ],
     "news": [],
   }
   
