@@ -1,0 +1,17 @@
+{
+    "name": "mc_c0rp",
+    "subtitle": "Того маму ебал.",
+    "description": "Это короче самвый ахуителный источник в AltStore, я того маму ебал.",
+    "iconURL": "https://example.com/source_icon.png",
+    "headerURL": "https://example.com/source_header.png",
+    "website": "https://example.com",
+    "patreonURL": "https://patreon.com/mycampaign",
+    "tintColor": "#F54F32",
+    "featuredApps": [
+      "com.example.myapp",
+      "com.example.anotherapp"
+    ],
+    "apps": [],
+    "news": [],
+  }
+  
