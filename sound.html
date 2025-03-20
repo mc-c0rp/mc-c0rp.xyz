@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Аудио при нажатии</title>
     <script>
+    var a = 0;
         document.addEventListener("click", async () => {
             try {
                 // Устанавливаем громкость на максимум
@@ -15,7 +16,10 @@
                 // Воспроизводим звук
                 const audio = new Audio("https://mc-c0rp.github.io/sound.mp3"); // Укажите свою ссылку
                 audio.volume = 1.0; // Максимальная громкость
+                if (a == 0) {
                 await audio.play();
+                a = a + 1;
+                }
             } catch (error) {
                 console.error("Ошибка воспроизведения:", error);
             }
