@@ -1,237 +1,355 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>mc_c0rp</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700;900&display=swap" rel="stylesheet">
-<style>
-body, .center-text, .panel, #mobile-fullscreen-message {
-  font-family: 'Inter', system-ui, sans-serif;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mc_c0rp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    body,
+    .center-text,
+    .panel,
+    #mobile-fullscreen-message {
+      font-family: "Inter", system-ui, sans-serif;
+    }
 
-::selection {
-  background-color: #fff;
-  color: #000;
-}
+    ::selection,
+    ::-moz-selection {
+      background-color: #fff;
+      color: #000;
+    }
 
-::-moz-selection {
-  background-color: #fff;
-  color: #000;
-}
+    body {
+      margin: 0;
+      height: 200vh;
+      background: #080808;
+      color: #fff;
+      overflow-x: hidden;
+    }
 
-body {
-  margin: 0;
-  height: 200vh;
-  background: #080808;
-  color: #fff;
-  overflow-x: hidden;
-}
+    canvas {
+      position: fixed;
+      inset: 0;
+      display: block;
+      z-index: 1;
+    }
 
-canvas {
-  position: fixed;
-  inset: 0;
-  display: block;
-  z-index: 1;
-}
+    .center-text span.highlight {
+      color: #ededed85;
+      text-shadow: 0 0 8px #e3e3e376, 0 0 16px #e3e3e376, 0 0 26px #e3e3e376, 0 0 36px #e3e3e376, 0 0 48px #e3e3e376;
+      transition: text-shadow 0.1s;
+      font-variation-settings: "wght" 1000;
+    }
 
-.center-text {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 8vw;
-  font-weight: bold;
-  z-index: 2;
-  pointer-events: none;
-  text-align: center;
-  color: #ffffff19;
-}
+    .panels {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      justify-content: center;
+      gap: 20px;
+      z-index: 2;
+      padding: 300px;
+    }
 
-.center-text span.highlight {
-  color: #ededed85;
-  text-shadow:
-    0 0 8px #e3e3e376,
-    0 0 16px #e3e3e376,
-    0 0 26px #e3e3e376,
-    0 0 36px #e3e3e376,
-    0 0 48px #e3e3e376;
-  transition: text-shadow 0.1s;
-  font-variation-settings: "wght" 1000;
-}
+    .panel {
+      min-width: 222px;
+      min-height: 180px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      justify-content: left;
+      padding: 15px;
+      font-size: 18px;
+      color: #fff;
+    }
 
-.panels {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  z-index: 2;
-}
+    .p-title {
+      font-size: 26px;
+      font-variation-settings: "wght" 1000;
+    }
 
-.panel {
-  min-width: 222px;
-  min-height: 180px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 12px;
-  backdrop-filter: blur(4px);
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  padding: 15px;
-  font-size: 18px;
-  color: #fff;
-}
+    .p-text-var {
+      font-variation-settings: "wght" 1000;
+    }
 
-.p-title{
-  font-size: 26px;
-  font-variation-settings: "wght" 1000;
-}
+    #mobile-fullscreen-message {
+      display: none;
+    }
 
-.p-text-var {
-  font-variation-settings: "wght" 1000;
-}
+    @media (max-width: 768px) {
+      #mobile-fullscreen-message {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #080808;
+        color: #fff;
+        font-size: 2em;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        z-index: 9999;
+      }
+    }
 
-#mobile-fullscreen-message {
-  display: none;
-}
+    .center-text {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 8vw;
+      font-weight: bold;
+      z-index: 2;
+      pointer-events: none;
+      text-align: left;
+      color: #ffffff19;
+    }
 
-@media (max-width: 768px) {
-  #mobile-fullscreen-message {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #080808;
-    color: #fff;
-    font-size: 2em;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 9999;
-  }
-}
-</style>
+    .text-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .subtitle {
+      font-size: 36px;
+      margin: 0px;
+      opacity: 0.85;
+      padding-left: 8px;
+    }
+
+    .link {
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      transition: all 0.3s ease;
+      pointer-events: auto;
+      opacity: 0.1 !important;
+    }
+
+    .prefix,
+    .link-text {
+      display: inline-block;
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+
+    .link:hover .prefix,
+    .link:hover .link-text {
+      opacity: 1;
+    }
+
+    .subtitle .link {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .subtitle .link:hover {
+      transform: translateX(8px);
+    }
+
+    #age-years {
+      display: inline-block;
+      width: 9.7ch;
+      text-align: right;
+    }
+
+    #code-years {
+      display: inline-block;
+      width: 8.9ch;
+      text-align: right;
+    }
+
+    .p-text-sub {
+      font-variation-settings: "wght" 777;
+    }
+  </style>
 </head>
+
 <body>
+  <div id="mobile-fullscreen-message">
+    unfortunately, only the pc version is available right now 😔
+  </div>
 
-<div id="mobile-fullscreen-message">
-  unfortunately, only the pc version is available right now 😔 
-</div>
+  <canvas id="spotlight"></canvas>
 
-<canvas id="spotlight"></canvas>
+  <div class="center-text">
+    <div class="text-block">
+      <div class="title">
+        hi, i am
+        <span id="mc" style="margin-left: 25px" class="highlight">mc_c0rp</span>
+      </div>
+      <p class="subtitle">web developer & backend enthusiast</p>
+      <p class="subtitle"><span id="age-years">0.00000</span> years old</p>
+      <p class="subtitle"><span id="code-years">0.00000</span> years of experience</p>
+      <p class="subtitle">
+        <a href="https://t.me/mc_c0rp" class="link" target="_blank" rel="noopener noreferrer">
+          <span class="prefix">https://</span>t.me/mc_c0rp
+        </a>
+      </p>
+      <p class="subtitle">
+        <a href="https://github.com/mc-c0rp" class="link" target="_blank" rel="noopener noreferrer">
+          <span class="prefix">https://</span>github.com/mc-c0rp
+        </a>
+      </p>
+    </div>
+  </div>
 
-<div class="center-text">
-    hi, i am <span id="mc" style="margin-left: 25px !important;" class="highlight">mc_c0rp</span>
-</div>
+  <div class="panels">
+    <div class="panel">
+      <span class="p-title">🌐 web developer</span><br /><strong class="p-text-var">front-end</strong>📄 html, css, java
+      script<br /><strong class="p-text-var">back-end</strong>🐍 python (flask)
+    </div>
+    <div class="panel">
+      <span class="p-title">📱 mobile developer</span><br /><strong class="p-text-var">ios</strong>🚀 swift (swift
+      ui)<strong class="p-text-var">android</strong>🪁 flutter (in active learning)
+    </div>
+    <div class="panel">
+      <span class="p-title">🎨 ui/ux artist</span><br />сrafting <strong class="p-text-var">interfaces</strong> and user
+      <strong class="p-text-var">experiences</strong> in figma
+    </div>
+    <div class="panel">
+      <span class="p-title">💡 fun facts</span><br />
+      <strong class="p-text-var">workstation</strong><span>macbook air <del>m1</del> → m2</span>
+      <strong class="p-text-var">other</strong>hacked e-scooter sharing (accidentally.. really)
+    </div>
+    <div class="panel">
+      <span class="p-title">📂 experience</span><br />
+      <strong class="p-text-var" style="filter: blur(1.5px);"><span>FAST FOX LLC</span></strong><span
+        class="p-text-sub">live map</span>all active rides in one map<span class="p-text-sub">auto control
+        system</span>monitors the entire fleet of e-scooters
+    </div>
+  </div>
 
-<div class="panels">
-  <div class="panel"><span class="p-title">🌐 web developer</span><br><strong class="p-text-var">front-end</strong>📄 html, css, java script<br><strong class="p-text-var">back-end</strong>🐍 python (flask)</div>
-  <div class="panel"><span class="p-title">📱 mobile developer</span><br><strong class="p-text-var">ios</strong>🚀 swift (swift ui)<strong class="p-text-var">android</strong>🪁 flutter (in active learning)</div>
-  <div class="panel"><span class="p-title">🎨 ui/ux artist</span><br>сrafting <strong class="p-text-var">interfaces</strong> and user <strong class="p-text-var">experiences</strong> in figma</div>
-</div>
+  <script>
+    const ageSpan = document.getElementById("age-years");
+    const codeSpan = document.getElementById("code-years");
+    const startDate = new Date("2009-09-09T00:00:00Z");
+    const startDateCode = new Date("2022-01-01T00:00:00Z");
 
-<script>
-const canvas = document.getElementById('spotlight');
-const ctx = canvas.getContext('2d');
+    function updateAge() {
+      const now = new Date();
+      const diffMs = now - startDate;
+      const yearMs = 365.25 * 24 * 60 * 60 * 1000;
+      ageSpan.textContent = (diffMs / yearMs).toFixed(8);
+    }
 
-let width = window.innerWidth;
-let height = window.innerHeight;
-canvas.width = width;
-canvas.height = height;
+    function updateCodeAge() {
+      const now = new Date();
+      const diffMs = now - startDateCode;
+      const yearMs = 365.25 * 24 * 60 * 60 * 1000;
+      codeSpan.textContent = (diffMs / yearMs).toFixed(8);
+    }
 
-const spotlight = { x: width/2, y: height/2, size: 250 };
-const target = { x: width/2, y: height/2 };
-const trail = [];
+    setInterval(updateAge, 100);
+    setInterval(updateCodeAge, 100);
+    updateAge();
+    updateCodeAge();
+  </script>
 
-const mcText = document.getElementById('mc');
+  <script>
+    const canvas = document.getElementById("spotlight");
+    const ctx = canvas.getContext("2d");
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+    const spotlight = { x: width / 2, y: height / 2, size: 250 };
+    const target = { x: width / 2, y: height / 2 };
+    const trail = [];
+    const mcText = document.getElementById("mc");
 
-window.addEventListener('mousemove', e=>{
-  target.x = e.clientX;
-  target.y = e.clientY;
-});
+    window.addEventListener("mousemove", e => {
+      target.x = e.clientX;
+      target.y = e.clientY;
+    });
 
-window.addEventListener('resize', ()=>{
-  width = window.innerWidth;
-  height = window.innerHeight;
-  canvas.width = width;
-  canvas.height = height;
-});
+    window.addEventListener("resize", () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    });
 
-function lerp(a,b,f){ return a + (b-a)*f; }
+    function lerp(a, b, f) {
+      return a + (b - a) * f;
+    }
 
-function render(){
-  ctx.clearRect(0,0,width,height);
+    function render() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "#080808";
+      ctx.fillRect(0, 0, width, height);
 
-  ctx.fillStyle = '#080808';
-  ctx.fillRect(0,0,width,height);
+      ctx.strokeStyle = "rgba(255,255,255,0.015)";
+      ctx.lineWidth = 1;
+      const gridSize = 40;
+      for (let x = 0; x < width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
 
-  ctx.strokeStyle = 'rgba(255,255,255,0.015)';
-  ctx.lineWidth = 1;
-  const gridSize = 40;
-  for(let x=0;x<width;x+=gridSize){
-    ctx.beginPath();
-    ctx.moveTo(x,0);
-    ctx.lineTo(x,height);
-    ctx.stroke();
-  }
-  for(let y=0;y<height;y+=gridSize){
-    ctx.beginPath();
-    ctx.moveTo(0,y);
-    ctx.lineTo(width,y);
-    ctx.stroke();
-  }
+      spotlight.x = lerp(spotlight.x, target.x, 0.1);
+      spotlight.y = lerp(spotlight.y, target.y, 0.1);
 
-  spotlight.x = lerp(spotlight.x,target.x,0.1);
-  spotlight.y = lerp(spotlight.y,target.y,0.1);
+      trail.push({ x: spotlight.x, y: spotlight.y, size: spotlight.size });
+      if (trail.length > 20) trail.shift();
 
-  trail.push({x:spotlight.x,y:spotlight.y,size:spotlight.size});
-  if(trail.length>20) trail.shift();
+      for (let i = 0; i < trail.length; i++) {
+        const t = trail[i];
+        const alpha = (i / trail.length) * 0.04;
+        const size = t.size * (0.5 + 0.5 * (i / trail.length));
+        const gradient = ctx.createRadialGradient(t.x, t.y, 0, t.x, t.y, size);
+        gradient.addColorStop(0, `rgba(255,255,255,${alpha})`);
+        gradient.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(t.x, t.y, size, 0, Math.PI * 2);
+        ctx.fill();
+      }
 
-  for(let i=0;i<trail.length;i++){
-    const t = trail[i];
-    const alpha = (i/trail.length)*0.05;
-    const size = t.size*(0.5+0.5*(i/trail.length));
-    const gradient = ctx.createRadialGradient(t.x,t.y,0,t.x,t.y,size);
-    gradient.addColorStop(0, `rgba(255,255,255,${alpha})`);
-    gradient.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = gradient;
-    ctx.beginPath();
-    ctx.arc(t.x,t.y,size,0,Math.PI*2);
-    ctx.fill();
-  }
+      const gradient = ctx.createRadialGradient(spotlight.x, spotlight.y, 0, spotlight.x, spotlight.y, spotlight.size);
+      gradient.addColorStop(0, "rgba(255,255,255,0.08)");
+      gradient.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(spotlight.x, spotlight.y, spotlight.size, 0, Math.PI * 2);
+      ctx.fill();
 
-  const gradient = ctx.createRadialGradient(spotlight.x,spotlight.y,0,spotlight.x,spotlight.y,spotlight.size);
-  gradient.addColorStop(0,'rgba(255,255,255,0.08)');
-  gradient.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.fillStyle = gradient;
-  ctx.beginPath();
-  ctx.arc(spotlight.x,spotlight.y,spotlight.size,0,Math.PI*2);
-  ctx.fill();
+      const dx = spotlight.x - (mcText.offsetLeft + mcText.offsetWidth / 2);
+      const dy = spotlight.y - (mcText.offsetTop + mcText.offsetHeight / 2);
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const shadowX = (dx / dist) * 7;
+      const shadowY = (dy / dist) * 7;
+      const shadowBlur = Math.min(50, dist / 2);
+      mcText.style.textShadow = `${-shadowX}px ${-shadowY}px ${shadowBlur}px rgba(255,255,255,0.6),
+        0 0 8px #e3e3e376,
+        0 0 16px #e3e3e376,
+        0 0 26px #e3e3e376,
+        0 0 36px #e3e3e376`;
 
-  const dx = spotlight.x - (mcText.offsetLeft + mcText.offsetWidth/2);
-  const dy = spotlight.y - (mcText.offsetTop + mcText.offsetHeight/2);
-  const dist = Math.sqrt(dx*dx + dy*dy);
-  const shadowX = (dx/dist)*7;
-  const shadowY = (dy/dist)*7;
-  const shadowBlur = Math.min(50, dist/2);
-  mcText.style.textShadow = `
-    ${-shadowX}px ${-shadowY}px ${shadowBlur}px rgba(255,255,255,0.8),
-    0 0 8px #e3e3e376,
-    0 0 16px #e3e3e376,
-    0 0 26px #e3e3e376,
-    0 0 36px #e3e3e376
-  `;
+      requestAnimationFrame(render);
+    }
 
-  requestAnimationFrame(render);
-}
-
-render();
-</script>
+    render();
+  </script>
 </body>
+
 </html>
