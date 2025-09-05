@@ -58,14 +58,15 @@
       grid-template-columns: repeat(3, 1fr);
       justify-content: center;
       gap: 20px;
-      z-index: 2;
+      z-index: 5;
       padding: 300px;
+      filter: blur();
     }
 
     .panel {
       min-width: 222px;
       min-height: 180px;
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(35, 35, 35, 0.301);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
       backdrop-filter: blur(4px);
@@ -75,6 +76,8 @@
       padding: 15px;
       font-size: 18px;
       color: #fff;
+      -webkit-backdrop-filter: blur(8px); /* для Safari */
+      backdrop-filter: blur(8px);
     }
 
     .p-title {
@@ -182,6 +185,10 @@
 
     .p-text-sub {
       font-variation-settings: "wght" 777;
+    }
+
+    .center-text {
+      z-index: 5;
     }
   </style>
 </head>
