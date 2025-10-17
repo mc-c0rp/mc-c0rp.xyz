@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mapbox — Самокаты</title>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
+  <style>
+    html, body, #map { height: 100%; margin: 0; padding: 0; }
+    .map-overlay {
+      position: absolute;
+      left: 10px; top: 10px;
+      background: #fff; padding: 10px 12px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.15);
+      z-index: 1;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="map-overlay">
+    <code>https://fast-fox.rideatom.com/gbfs/v3_0/en/vehicle_status?id=1551</code>
+  </div>
+
+  <script>
+    const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibWMtYzBycCIsImEiOiJjbThqZTZtM2EwZGVkMmlyNHJtNTFvejFjIn0.Z6AvGRDiLCeRG1V4xmsH6Q';
+    mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v12',
+      center: [28.812412, 47.044449],
+      zoom: 13
+    });
+
+    // Кнопки навигации и геолокации
+    map.addControl(new mapboxgl.NavigationControl());
+
+    // Геолокация пользователя
+    const geolocate = new mapboxgl.GeolocateControl({
+      positionOptions: { enableHighAccuracy: true },
+      trackUserLocation: true,         // будет следить за пользователем
+      showUserHeading: true,           // стрелка направления
+      showAccuracyCircle: true
+    });
+    map.addControl(geolocate);
+
+    // После загрузки карты сразу запросить местоположение
+    map.on('load', () => {
+      geolocate.trigger(); // сразу показать позицию
+      loadAndDraw();
+    });
+
+    const DATA_URL = 'https://fast-fox.rideatom.com/gbfs/v3_0/en/vehicle_status?id=1551';
+
+    async function loadAndDraw() {
+      try {
+        const res = await fetch(DATA_URL, { cache: 'no-store' });
+        const json = await res.json();
+        const vehicles = json?.data?.vehicles || [];
+
+        if (!vehicles.length) return alert('Нет самокатов');
+
+        const geojson = {
+          type: 'FeatureCollection',
+          features: vehicles.map(v => {
+            const ios = v.rental_uris?.ios || '';
+            let scooterNumber = '';
+            try {
+              if (ios) {
+                const u = new URL(ios);
+                scooterNumber = u.pathname.split('/').filter(Boolean).pop() || '';
+              }
+            } catch {
+              const parts = ios.split('/').filter(Boolean);
+              scooterNumber = parts.pop() || '';
+            }
+
+            return {
+              type: 'Feature',
+              geometry: { type: 'Point', coordinates: [Number(v.lon), Number(v.lat)] },
+              properties: {
+                number: scooterNumber || '—',
+                vehicle_id: v.vehicle_id || '',
+                range: v.current_range_meters ?? '',
+                ios
+              }
+            };
+          })
+        };
+
+        if (map.getSource('scooters')) {
+          map.getSource('scooters').setData(geojson);
+        } else {
+          map.addSource('scooters', { type: 'geojson', data: geojson });
+
+          map.addLayer({
+            id: 'scooter-circles',
+            type: 'circle',
+            source: 'scooters',
+            paint: {
+              'circle-radius': 10,
+              'circle-color': '#111',
+              'circle-stroke-color': '#fff',
+              'circle-stroke-width': 1.5
+            }
+          });
+
+          map.addLayer({
+            id: 'scooter-labels',
+            type: 'symbol',
+            source: 'scooters',
+            layout: {
+              'text-field': ['get', 'number'],
+              'text-size': 14,
+              'text-offset': [0, 0.8],
+              'text-anchor': 'top'
+            },
+            paint: {
+              'text-color': '#fff',
+              'text-halo-color': '#000',
+              'text-halo-width': 1.5
+            }
+          });
+
+          map.on('click', 'scooter-circles', e => {
+            const p = e.features[0].properties;
+            const html = `
+              <strong>nr</strong> ${p.number}<br>
+              <strong>id</strong> ${p.vehicle_id}<br>
+            `;
+            new mapboxgl.Popup()
+              .setLngLat(e.lngLat)
+              .setHTML(html)
+              .addTo(map);
+          });
+
+          map.on('mouseenter', 'scooter-circles', () => map.getCanvas().style.cursor = 'pointer');
+          map.on('mouseleave', 'scooter-circles', () => map.getCanvas().style.cursor = '');
+        }
+
+        // Подгоняем под самокаты
+        const coords = vehicles.map(v => [v.lon, v.lat]);
+        const bounds = coords.reduce((b, c) => b.extend(c), new mapboxgl.LngLatBounds(coords[0], coords[0]));
+        map.fitBounds(bounds, { padding: 60, maxZoom: 15 });
+
+      } catch (err) {
+        console.error(err);
+        alert('Ошибка: ' + err.message);
+      }
+    }
+  </script>
+</body>
+</html>
