@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>mc c0rp // profile</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <meta name="google-site-verification" content="3K6S6RzhuFzfp0BQJpvOsYZ45meetalG-ESHDjxXBZE" />
+  <meta name="description" content="👋 Hi, I am mc c0rp, a web developer & backend enthusiast. 🧑‍💻 Making sites and much other!">
+  <meta name="keywords" content="web developer, backend, ui/ux, swift, flutter, python, github, mc_c0rp, mc c0rp, mc corp, mc-c0rp, mc-corp">
+  <meta name="author" content="mc_c0rp">
+
+  <meta property="og:title" content="mc_c0rp">
+  <meta property="og:description" content="👋 Hi, I am mc c0rp, a web developer & backend enthusiast. 🧑‍💻 Making sites and much other!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mc-c0rp.xyz">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <style>
+        /* --- THEMES --- */
+        :root {
+            --primary: #2563eb;
+            --surface: #ffffff;
+            --background: #f3f4f6;
+            --text: #1f2937;
+            --text-sec: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --radius: 12px;
+            --card-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            --reactor-glow: rgba(37, 99, 235, 0.5);
+            --console-bg: rgba(255, 255, 255, 0.95);
+            --console-header: #e0e0e0;
+        }
+
+        [data-theme="dark"] {
+            --primary: #60a5fa;
+            --surface: #1f2937;
+            --background: #111827;
+            --text: #f9fafb;
+            --text-sec: #9ca3af;
+            --border: #374151;
+            --card-shadow: none;
+            --reactor-glow: rgba(96, 165, 250, 0.5);
+            --console-bg: rgba(31, 41, 55, 0.95);
+            --console-header: #374151;
+        }
+
+        [data-theme="neon"] {
+            --primary: #00ff9d;
+            --surface: #0a0a0a;
+            --background: #000000;
+            --text: #00ff9d;
+            --text-sec: #008f5d;
+            --border: #00331f;
+            --success: #00ff9d;
+            --warning: #fbff00;
+            --danger: #ff0055;
+            --radius: 2px;
+            --card-shadow: 0 0 10px rgba(0, 255, 157, 0.1);
+            --reactor-glow: rgba(0, 255, 157, 0.6);
+            --console-bg: rgba(0, 20, 10, 0.95);
+            --console-header: #00331f;
+        }
+
+        [data-theme="retro"] {
+            --primary: #fbbf24;
+            --surface: #292524;
+            --background: #1c1917;
+            --text: #fbbf24;
+            --text-sec: #b45309;
+            --border: #78350f;
+            --radius: 0px;
+            --card-shadow: 4px 4px 0px rgba(120, 53, 15, 0.3);
+            --reactor-glow: rgba(251, 191, 36, 0.4);
+            --console-bg: #292524;
+            --console-header: #78350f;
+        }
+
+        [data-theme="err"] {
+            --primary: #ffffff;
+            --surface: #000000;
+            --background: #000000;
+            --text: #ffffff;
+            --text-sec: #666666;
+            --border: #ffffff;
+            --radius: 0px;
+            --card-shadow: -4px 4px 0px rgba(255, 255, 255, 0.2);
+            --success: #fff;
+            --warning: #fff;
+            --reactor-glow: rgba(255, 255, 255, 0.8);
+            --console-bg: #000;
+            --console-header: #fff;
+        }
+
+        [data-theme="red"] {
+            --primary: #ff0000;
+            --surface: #1a0505;
+            --background: #0a0000;
+            --text: #ff0000;
+            --text-sec: #800000;
+            --border: #4d0000;
+            --radius: 4px;
+            --card-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+            --success: #ff0000;
+            --warning: #ff0000;
+            --reactor-glow: rgba(255, 0, 0, 0.7);
+            --console-bg: #1a0505;
+            --console-header: #4d0000;
+        }
+
+        /* --- BASE --- */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            margin: 0; padding: 0; 
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--background); 
+            color: var(--text); 
+            transition: background 0.3s, color 0.3s;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            padding: 20px;
+            padding-bottom: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- MATRIX CANVAS --- */
+        #matrix-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; display: none; background: transparent; pointer-events: none;
+        }
+
+        /* --- BLOCK IDs --- */
+        .block-id {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            font-size: 9px;
+            color: #888;
+            opacity: 0.5;
+            font-weight: normal;
+            pointer-events: none;
+            font-family: monospace;
+        }
+        [data-theme="dark"] .block-id { color: #555; }
+
+        /* --- REACTOR (NEW AVATAR) --- */
+        .profile-header {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .reactor-container {
+            width: 70px;
+            height: 70px;
+            position: relative;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .reactor-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--primary);
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            animation: reactor-spin 3s linear infinite;
+            box-shadow: 0 0 10px var(--reactor-glow);
+        }
+
+        .reactor-core {
+            width: 40%;
+            height: 40%;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--reactor-glow), 0 0 30px var(--reactor-glow);
+            animation: reactor-pulse 2s ease-in-out infinite;
+        }
+        
+        /* Theme mods for Reactor */
+        [data-theme="retro"] .reactor-ring { border-radius: 0; border: 2px solid var(--primary); animation: none; opacity: 0.5; }
+        [data-theme="retro"] .reactor-core { border-radius: 0; width: 50%; height: 50%; animation: blinker 0.5s steps(2) infinite; }
+        [data-theme="err"] .reactor-ring { border-style: dashed; animation: reactor-spin 0.2s linear infinite reverse; }
+        [data-theme="err"] .reactor-core { animation: err-shake 0.1s infinite; clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%); }
+        [data-theme="red"] .reactor-ring { border: 4px double var(--primary); border-left-color: transparent; animation: reactor-spin 1s linear infinite; }
+
+        @keyframes reactor-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes reactor-pulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } }
+
+        /* --- REST OF CSS --- */
+        .profile-info h1 { margin: 0; font-size: 24px; letter-spacing: -1px; }
+        .profile-info p { margin: 6px 0 0 0; color: var(--text-sec); font-size: 13px; font-weight: 500; }
+        
+        .verified-badge {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: rgba(16, 185, 129, 0.15); color: var(--success);
+            padding: 2px 8px; border-radius: 4px; font-size: 10px; 
+            margin-top: 8px; font-weight: 700; text-transform: uppercase;
+        }
+        [data-theme="red"] .verified-badge { background: #330000; color: #ff0000; }
+        [data-theme="err"] .verified-badge { background: #fff; color: #000; }
+
+        /* Controls Area */
+        .controls-area {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* Theme Switcher */
+        .theme-switcher { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; flex-grow: 1; }
+        .theme-switcher::-webkit-scrollbar { display: none; }
+        .theme-chip {
+            background: var(--surface); border: 1px solid var(--border);
+            padding: 8px 16px; border-radius: 20px; cursor: pointer;
+            font-size: 11px; font-weight: 700; color: var(--text-sec);
+            white-space: nowrap; transition: 0.2s;
+        }
+        .theme-chip.active { background: var(--text); color: var(--background); border-color: var(--text); }
+        [data-theme="neon"] .theme-chip.active { background: var(--primary); color: #000; }
+        [data-theme="retro"] .theme-chip { border-radius: 0; }
+        [data-theme="retro"] .theme-chip.active { background: var(--primary); color: var(--background); }
+        [data-theme="err"] .theme-chip { border-radius: 0; border: 1px solid white; color: white; background: black; }
+        [data-theme="err"] .theme-chip.active { background: white; color: black; }
+        [data-theme="red"] .theme-chip { border-color: #800000; color: #800000; background: #1a0505; }
+        [data-theme="red"] .theme-chip.active { background: #ff0000; color: #000; border-color: #ff0000; box-shadow: 0 0 10px red; }
+
+        /* Console Trigger & Matrix Toggle */
+        .extra-controls { display: flex; gap: 10px; align-items: center; }
+
+        .icon-btn {
+            background: var(--surface); border: 1px solid var(--border);
+            color: var(--text); padding: 8px; border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: 0.2s;
+        }
+        .icon-btn:hover { background: var(--border); }
+        
+        /* Matrix Switch (Custom Checkbox) */
+        .matrix-switch {
+            display: none; /* Hidden by default */
+            align-items: center; gap: 5px;
+            font-size: 10px; font-weight: bold; color: var(--primary);
+            background: rgba(0,0,0,0.5); padding: 5px 10px; border: 1px solid var(--primary);
+            cursor: pointer;
+        }
+        .matrix-switch.visible { display: flex; }
+        .switch-box { width: 10px; height: 10px; border: 1px solid var(--primary); display: inline-block; }
+        .switch-box.on { background: var(--primary); }
+
+
+        /* Stats */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+        .stat-card { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--card-shadow); }
+        .stat-label { font-size: 10px; text-transform: uppercase; color: var(--text-sec); font-weight: 700; display: flex; align-items: center; gap: 6px;}
+        .stat-value { font-size: 16px; font-weight: 700; margin-top: 8px; font-variant-numeric: tabular-nums; }
+        .blink { animation: blinker 1.5s linear infinite; width: 6px; height: 6px; background: var(--success); border-radius: 50%; display: inline-block; }
+        @keyframes blinker { 50% { opacity: 0; } }
+
+        /* Panels */
+        .section-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--text-sec); text-transform: uppercase; letter-spacing: 1px; }
+        .panel { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; box-shadow: var(--card-shadow); transition: transform 0.2s, opacity 0.3s; }
+        .panel:hover { transform: translateY(-2px); border-color: var(--primary); }
+        .panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+        .ph-title { font-weight: 800; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+        .ph-icon { font-size: 20px; color: var(--primary); }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .tag { font-size: 11px; padding: 4px 10px; border-radius: 6px; background: var(--background); color: var(--text); border: 1px solid var(--border); font-weight: 600; }
+        [data-theme="retro"] .tag { border-radius: 0; }
+        [data-theme="err"] .tag { border: 1px solid white; background: black; color: white; border-radius: 0; }
+        [data-theme="red"] .tag { border: 1px solid #ff0000; background: #1a0505; color: #ff0000; }
+        
+        .highlight-text { font-size: 13px; line-height: 1.5; color: var(--text-sec); min-height: 40px; }
+        .highlight-text strong { color: var(--text); }
+        [data-theme="err"] .highlight-text, [data-theme="err"] h1, [data-theme="err"] .ph-title { text-shadow: 2px 0 0 red, -2px 0 0 blue; animation: text-flicker 3s infinite alternate; }
+
+        .typing-cursor { display: inline-block; color: var(--primary); font-weight: 900; margin-left: 2px; animation: typeBlink 1s step-end infinite; }
+        @keyframes typeBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .exp-item { padding-left: 12px; border-left: 2px solid var(--border); margin-left: 4px; margin-bottom: 12px; }
+        .exp-item:last-child { margin-bottom: 0; }
+        .exp-role { font-weight: 700; font-size: 13px; }
+        .exp-desc { font-size: 12px; color: var(--text-sec); margin-top: 2px; }
+
+        .links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 30px; }
+        .link-btn { text-decoration: none; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; font-size: 13px; transition: 0.2s; }
+        .link-btn:hover { background: var(--background); border-color: var(--text); }
+        .link-btn.primary { background: var(--text); color: var(--surface); border: none; }
+        [data-theme="neon"] .link-btn.primary { background: var(--primary); color: #000; }
+        [data-theme="retro"] .link-btn.primary { color: var(--background); }
+        [data-theme="retro"] .link-btn { border-radius: 0; }
+        [data-theme="err"] .link-btn { border-radius: 0; border: 1px solid white; background: black; color: white; }
+        [data-theme="err"] .link-btn.primary { background: white; color: black; }
+        [data-theme="red"] .link-btn { background: #1a0505; color: #ff0000; border-color: #ff0000; }
+        [data-theme="red"] .link-btn:hover { background: #ff0000; color: #000; }
+        [data-theme="red"] .link-btn.primary { background: #ff0000; color: #000; }
+
+        .footer { text-align: center; margin-top: 40px; font-size: 10px; color: var(--text-sec); opacity: 0.5; }
+        .secret-trigger { cursor: pointer; transition: opacity 0.2s; }
+        .secret-trigger:hover { opacity: 1; text-decoration: underline; color: var(--primary); }
+
+        /* --- DRAGGABLE CONSOLE --- */
+        .console-window {
+            position: fixed;
+            top: 20%; left: 20%;
+            width: 500px; height: 350px;
+            background: var(--console-bg);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 10000;
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            border-radius: var(--radius);
+            font-family: 'JetBrains Mono', monospace;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .console-bar {
+            background: var(--console-header);
+            padding: 8px 12px;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: grab;
+            user-select: none;
+            border-bottom: 1px solid var(--border);
+        }
+        .console-bar:active { cursor: grabbing; }
+        .console-title { font-size: 12px; font-weight: bold; color: var(--text); }
+        .console-close { cursor: pointer; color: var(--danger); font-weight: bold; }
+
+        .console-body {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            color: var(--text);
+            font-size: 12px;
+            scrollbar-width: thin;
+        }
+        .console-output { white-space: pre-wrap; margin-bottom: 10px; line-height: 1.4; }
+        .console-input-line { display: flex; gap: 8px; align-items: center; }
+        .console-prompt { color: var(--success); font-weight: bold; }
+        [data-theme="red"] .console-prompt { color: red; }
+        .console-input {
+            background: transparent; border: none; outline: none;
+            color: var(--text); font-family: inherit; font-size: 12px; flex: 1;
+        }
+
+        /* --- CRASH ANIMATION --- */
+        @keyframes crash-flash {
+            0% { background: white; filter: invert(0); }
+            10% { background: black; filter: invert(1); }
+            20% { background: white; filter: invert(0); }
+            30% { background: black; filter: invert(1); }
+            100% { background: black; }
+        }
+        body.crashing {
+            animation: crash-flash 2s forwards;
+            overflow: hidden;
+        }
+        .happy-msg {
+            display: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: black; color: white;
+            align-items: center; justify-content: center;
+            font-size: 2rem; font-family: monospace;
+            z-index: 99999;
+        }
+
+        @keyframes err-shake { 0% { transform: rotate(0deg); } 5% { transform: rotate(5deg); } 10% { transform: rotate(-5deg); filter: invert(0); } 15% { transform: rotate(0deg); filter: invert(1); } 100% { transform: rotate(0deg); } }
+        @keyframes text-flicker { 0% { opacity: 1; transform: translateX(0); } 95% { opacity: 1; transform: translateX(0); } 96% { opacity: 0.8; transform: translateX(2px); } 97% { opacity: 1; transform: translateX(0); } 98% { opacity: 0.5; transform: translateX(-2px); } 99% { opacity: 1; transform: translateX(0); } 100% { opacity: 1; transform: translateX(0); } }
+
+    </style>
+</head>
+<body>
+
+<canvas id="matrix-canvas"></canvas>
+
+<div class="console-window" id="console">
+    <div class="console-bar" id="console-drag">
+        <span class="console-title">CONSOLE</span>
+        <span class="console-close" onclick="toggleConsole()">✖</span>
+    </div>
+    <div class="console-body" id="console-body" onclick="document.getElementById('cmd-input').focus()">
+        <div class="console-output" id="console-output"></div>
+        <div class="console-input-line">
+            <span class="console-prompt">></span>
+            <input type="text" class="console-input" id="cmd-input" autocomplete="off" spellcheck="false">
+        </div>
+    </div>
+</div>
+
+<div class="happy-msg" id="final-screen">Are you happy?</div>
+
+<div class="container" id="main-content">
+    
+    <div class="controls-area">
+        <div class="theme-switcher">
+            <div class="theme-chip" onclick="switchTheme('dark', this)">DARK</div>
+            <div class="theme-chip" onclick="switchTheme('light', this)">LIGHT</div>
+            <div class="theme-chip" onclick="switchTheme('neon', this)">HACKER</div>
+            <div class="theme-chip" onclick="switchTheme('retro', this)">RETRO</div>
+            <div class="theme-chip" onclick="switchTheme('err', this)">ERR</div>
+            <div class="theme-chip" onclick="switchTheme('red', this)">CODE: RED</div>
+        </div>
+
+        <div class="extra-controls">
+            <div class="matrix-switch" id="matrix-toggle" onclick="toggleMatrixManually()">
+                MATRIX <div class="switch-box" id="matrix-box"></div>
+            </div>
+            <button class="icon-btn" onclick="toggleConsole()" title="Open Console">
+                <i class="ph ph-terminal-window"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="profile-header" id="block-header">
+        <div class="block-id">ID: header</div>
+        <div class="reactor-container">
+            <div class="reactor-ring"></div>
+            <div class="reactor-core"></div>
+        </div>
+        
+        <div class="profile-info">
+            <h1 id="uname">mc c0rp</h1>
+            <p>Web Developer & Backend Enthusiast</p>
+            <div class="verified-badge"><i class="ph-fill ph-check-circle"></i> idk what to write here sry</div>
+        </div>
+    </div>
+
+    <div class="stats-grid" id="block-stats">
+        <div class="block-id">ID: stats</div>
+        <div class="stat-card">
+            <div class="stat-label"><div class="blink"></div> Uptime (Age)</div>
+            <div class="stat-value" id="age-years">0.00000000</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label"><i class="ph ph-code"></i> Experience</div>
+            <div class="stat-value" id="code-years">0.00000000</div>
+        </div>
+    </div>
+
+    <div class="section-title">Diagnostics & Skills</div>
+    
+    <div class="panel" id="block-web">
+        <div class="block-id">ID: web</div>
+        <div class="panel-header">
+            <span class="ph-title"><i class="ph ph-globe ph-icon"></i> WEB DEV</span>
+        </div>
+        <div class="highlight-text type-effect">
+            Front-End & Back-End architecture. 
+        </div>
+        <div class="tags">
+            <span class="tag">HTML/CSS</span>
+            <span class="tag">JS</span>
+            <span class="tag">Python (Flask)</span>
+        </div>
+    </div>
+
+    <div class="panel" id="block-mobile">
+        <div class="block-id">ID: mobile</div>
+        <div class="panel-header">
+            <span class="ph-title"><i class="ph ph-device-mobile ph-icon"></i> MOBILE</span>
+        </div>
+        <div class="highlight-text type-effect">
+            Native iOS & Cross-platform development.
+        </div>
+        <div class="tags">
+            <span class="tag">Swift (SwiftUI)</span>
+            <span class="tag">Flutter (learning... <span id="fload">2</span>/1337%)</span>
+        </div>
+    </div>
+
+    <div class="panel" id="block-game">
+        <div class="block-id">ID: game</div>
+        <div class="panel-header">
+            <span class="ph-title"><i class="ph ph-game-controller ph-icon"></i> GAMEDEV</span>
+        </div>
+        <div class="highlight-text type-effect">
+            Destroy(this.gameObject);
+        </div>
+        <div class="tags">
+            <span class="tag">Unity</span>
+            <span class="tag">C#</span>
+        </div>
+    </div>
+
+    <div class="panel" id="block-soft">
+        <div class="block-id">ID: soft</div>
+        <div class="panel-header">
+            <span class="ph-title"><i class="ph ph-wrench ph-icon"></i> SOFT</span>
+        </div>
+        <div class="highlight-text type-effect">
+            Different tools that assist in development.
+        </div>
+        <div class="tags">
+            <span class="tag">Figma</span>
+            <span class="tag">Notion</span>
+            <span class="tag"><del style="opacity:0.5">Vibe code</del> ahh shit</span>
+            <span class="tag"><del style="opacity:0.5">Github Copilot</del> nah..</span>
+        </div>
+    </div>
+
+    <div class="section-title">System Logs (Exp)</div>
+    <div class="panel" id="block-exp">
+        <div class="block-id">ID: exp</div>
+        <div class="panel-header">
+            <span class="ph-title"><i class="ph ph-buildings ph-icon"></i> FAST FOX LLC</span>
+        </div>
+        <div class="exp-item">
+            <div class="exp-role type-effect">Live Map System</div>
+            <div class="exp-desc">Real-time tracking of all active rides.</div>
+        </div>
+        <div class="exp-item">
+            <div class="exp-role type-effect">Auto Control System</div>
+            <div class="exp-desc">Automated fleet monitoring & status updates.</div>
+        </div>
+    </div>
+
+    <div class="section-title">Misc Data</div>
+    <div class="panel" id="block-inc" style="border-color: var(--warning);">
+        <div class="block-id">ID: inc</div>
+        <div class="panel-header">
+            <span class="ph-title" style="color: var(--warning);"><i class="ph ph-warning-circle"></i> INCIDENT REPORT</span>
+        </div>
+        <div class="highlight-text type-effect">
+            Subject: Hacked e-scooter sharing. Status: Accidentally... really.
+        </div>
+    </div>
+    
+    <div class="panel" id="block-setup">
+        <div class="block-id">ID: setup</div>
+        <div class="panel-header">
+            <span class="ph-title"><i class="ph ph-laptop"></i> WORKSTATION</span>
+        </div>
+        <div class="highlight-text">
+            MacBook Air <del style="opacity:0.5">M1</del> <strong>M2</strong>
+        </div>
+    </div>
+
+    <div class="section-title">Deployments</div>
+    <a href="https://play.google.com/store/apps/dev?id=5544759955619913014" target="_blank" id="block-store-link">
+        <div class="panel" id="block-store">
+            <div class="block-id">ID: store</div>
+            <div class="panel-header">
+                <span class="ph-title"><i class="ph ph-game-controller ph-icon"></i> MY STUPID GAMES</span>
+                <i class="ph ph-arrow-up-right"></i>
+            </div>
+            <div class="highlight-text type-effect">
+                My stupid games on Google Play that were made in 2 days.
+            </div>
+            <div class="tags">
+                <span class="tag">Unity</span>
+                <span class="tag">Android</span>
+                <span class="tag">Flask (server back-end)</span>
+            </div>
+        </div>
+    </a>
+
+    <div class="links-grid" id="block-links">
+        <a href="https://t.me/mc_c0rp" target="_blank" class="link-btn primary">
+            <i class="ph ph-telegram-logo"></i> TELEGRAM
+        </a>
+        <a href="https://github.com/mc-c0rp" target="_blank" class="link-btn">
+            <i class="ph ph-github-logo"></i> GITHUB
+        </a>
+    </div>
+
+    <div class="footer">
+        SYSTEM ID: MC-C0RP-V2.0 <br> ALL SYSTEMS NOMINAL <br> (PAGE GENERATED BY GEMINI) <br> <a href="/v1.html">v1</a>
+    </div>
+
+</div>
+
+<script>
+    // --- 1. THEME & COOKIE LOGIC ---
+    const THEMES = ['dark', 'light', 'neon', 'retro', 'err', 'red'];
+    let matrixEnabled = false;
+    let sv_cheats = false;
+
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for(let i=0;i < ca.length;i++) {
+            let c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+
+    function switchTheme(themeName, el) {
+        document.documentElement.setAttribute('data-theme', themeName);
+        
+        // Update Chips
+        document.querySelectorAll('.theme-chip').forEach(c => c.classList.remove('active'));
+        if(el) {
+            el.classList.add('active');
+        } else {
+            document.querySelectorAll('.theme-chip').forEach(c => {
+                if(c.innerText.toLowerCase().includes(themeName.replace('red', '').trim().toLowerCase())) c.classList.add('active');
+            });
+        }
+
+        // Show/Hide Matrix Toggle
+        const mToggle = document.getElementById('matrix-toggle');
+        if(themeName === 'neon') {
+            mToggle.classList.add('visible');
+            // Enable Matrix by default on first switch if desired, or keep state
+        } else {
+            mToggle.classList.remove('visible');
+            // Optional: Auto disable matrix when leaving theme?
+            // toggleMatrix(false); 
+        }
+        
+        setCookie('mc_theme', themeName, 365);
+    }
+
+    // --- 2. MATRIX LOGIC ---
+    const cvs = document.getElementById('matrix-canvas');
+    const ctx = cvs.getContext('2d');
+    let matrixInterval;
+
+    function toggleMatrixManually() {
+        toggleMatrix(!matrixEnabled);
+    }
+
+    function toggleMatrix(state) {
+        matrixEnabled = state;
+        const box = document.getElementById('matrix-box');
+        
+        if(matrixEnabled) {
+            box.classList.add('on');
+            cvs.style.display = 'block';
+            startMatrixLoop();
+        } else {
+            box.classList.remove('on');
+            cvs.style.display = 'none';
+            if(matrixInterval) clearInterval(matrixInterval);
+        }
+    }
+
+    function startMatrixLoop() {
+        cvs.width = window.innerWidth;
+        cvs.height = window.innerHeight;
+        
+        // MONOSPACE FONT CHECK
+        const fontSize = 14;
+        const chars = "FUCKYOU@#$%^&*";
+        const columns = cvs.width / fontSize;
+        const drops = [];
+        for(let i=0; i<columns; i++) drops[i] = 1;
+
+        if(matrixInterval) clearInterval(matrixInterval);
+
+        matrixInterval = setInterval(() => {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, cvs.width, cvs.height);
+            ctx.fillStyle = "#0F0"; 
+            ctx.font = fontSize + "px 'JetBrains Mono', monospace"; // FORCE MONO
+
+            for(let i=0; i<drops.length; i++) {
+                const text = chars[Math.floor(Math.random()*chars.length)];
+                ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+                if(drops[i]*fontSize > cvs.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }, 33);
+    }
+
+    window.addEventListener('resize', () => {
+        if(matrixEnabled) {
+            cvs.width = window.innerWidth;
+            cvs.height = window.innerHeight;
+        }
+    });
+
+    // --- 3. CONSOLE LOGIC ---
+    const consoleWin = document.getElementById('console');
+    const consoleOut = document.getElementById('console-output');
+    const cmdInput = document.getElementById('cmd-input');
+
+    function toggleConsole() {
+        if (consoleWin.style.display === 'flex') {
+            consoleWin.style.display = 'none';
+        } else {
+            consoleWin.style.display = 'flex';
+            cmdInput.focus();
+            if(consoleOut.innerHTML === "") {
+                printStartup();
+            }
+        }
+    }
+
+    function print(text, color) {
+        const line = document.createElement('div');
+        line.textContent = text;
+        if(color) line.style.color = color;
+        consoleOut.appendChild(line);
+        // Scroll to bottom
+        document.getElementById('console-body').scrollTop = document.getElementById('console-body').scrollHeight;
+    }
+
+    function printStartup() {
+        const now = new Date();
+        const specs = `${navigator.platform} | Cores: ${navigator.hardwareConcurrency || '?'} | RAM: ${navigator.deviceMemory ? navigator.deviceMemory+'GB' : '?'}`;
+        print(`mc_c0rp.xyz v.2 initialized...`, 'var(--primary)');
+        print(`System time: ${now.toLocaleTimeString()}`);
+        print(`Host: ${specs}`);
+        print(`Type 'help' for commands.`);
+        print(`---------------------------`);
+    }
+
+    // Draggable Logic
+    dragElement(consoleWin);
+
+    function dragElement(elmnt) {
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        const header = document.getElementById(elmnt.id + "-drag");
+        if (header) {
+            header.onmousedown = dragMouseDown;
+        }
+
+        function dragMouseDown(e) {
+            e = e || window.event;
+            e.preventDefault();
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+    }
+
+    // Commands
+    cmdInput.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            const val = this.value.trim();
+            if(val) {
+                print(`> ${val}`);
+                processCommand(val);
+                this.value = "";
+            }
+        }
+    });
+
+    async function processCommand(raw) {
+        const args = raw.split(' ');
+        const cmd = args[0].toLowerCase();
+
+        switch(cmd) {
+            case 'help':
+                print("Available commands:");
+                print("  del <id>               - Delete a block by ID");
+                print("  set_theme <id>         - dark, light, neon, retro, err, red");
+                print("  do_not_enter           - Don't do it.");
+                print("  matrix                 - Toggle matrix background");
+                print("  fuck_you               - Dox yourself");
+                print("  time                   - Local system time");
+                print("  getip                  - Show IP address");
+                print("  clear                  - Clear console");
+                print("  sv_cheats <code>       - Enable cheats");
+                print("  change_name <text>     - Change name");
+                print("  title <text>           - Change HTML title");
+                print("  change_flutter <value> - Change Flutter load value");
+                break;
+
+            
+            case 'change_flutter':
+                if(args[1]) {
+                    if (sv_cheats) {
+                            document.getElementById('fload').innerText = args[1];
+                            print(`flutter value changed to ${args[1]}.`);
+                            break;
+                    }
+                    else {
+                        print('sv_cheats is false');
+                        break;
+                    }
+                    }
+                else {
+                    print("Usage: change_flutter <value>", 'var(--warning)');
+                        break;
+                }
+            case 'title':
+                if(args[1]) {
+                    if (sv_cheats) {
+                            document.title = args[1];
+                            print(`title changed to ${args[1]}.`);
+                            break;
+                    }
+                    else {
+                        print('sv_cheats is false');
+                        break;
+                    }
+                    }
+                else {
+                    print("Usage: title <text>", 'var(--warning)');
+                        break;
+                }
+            case 'change_name':
+                if(args[1]) {
+                    if (sv_cheats) {
+                            document.getElementById('uname').innerText = args[1];
+                            print(`name changed to ${args[1]}.`);
+                            break;
+                    }
+                    else {
+                        print('sv_cheats is false');
+                        break;
+                    }
+                    }
+                else {
+                    print("Usage: change_name <text>", 'var(--warning)');
+                        break;
+                }
+            
+            case 'sv_cheats':
+                if(args[1]) {
+                    if (args[1] == "1") {
+                        if (sv_cheats) {
+                            print("cheats are already enabled, nah");
+                            break;
+                        }
+                        print("cheats enabled");
+                        sv_cheats = true;
+                        break;
+                    }
+                    else if (args[1] == "0") {
+                        if (sv_cheats == false) {
+                            print("cheats are already disabled, nah");
+                            break;
+                        }
+                        print("cheats disabled");
+                        break;
+                    }
+                    else {
+                        print("Usage: sv_cheats <code 0/1>", 'var(--warning)');
+                        break;
+                    }
+                }
+            
+            case 'clear':
+                consoleOut.innerHTML = "";
+                break;
+
+            case 'time':
+                print(new Date().toString());
+                break;
+
+            case 'del':
+                if(args[1]) {
+                    const el = document.getElementById('block-' + args[1]);
+                    // Fallback to direct ID if not found with prefix
+                    const elDirect = document.getElementById(args[1]);
+                    
+                    if(el) {
+                        el.remove();
+                        print(`block block-${args[1]} deleted`, 'var(--success)');
+                    } else if (elDirect) {
+                        elDirect.remove();
+                        print(`block ${args[1]} deleted`, 'var(--success)');
+                    } else {
+                        print(`Error: Block '${args[1]}' not found`, 'var(--danger)');
+                    }
+                } else {
+                    print("Usage: del <id> (e.g., del web)", 'var(--warning)');
+                }
+                break;
+
+            case 'set_theme':
+                if(args[1] && THEMES.includes(args[1])) {
+                    switchTheme(args[1]);
+                    print(`Theme set to ${args[1]}`, 'var(--success)');
+                } else {
+                    print(`Usage: set_theme [${THEMES.join('|')}]`, 'var(--warning)');
+                }
+                break;
+
+            case 'matrix':
+                toggleMatrix(!matrixEnabled);
+                print(`Matrix ${matrixEnabled ? 'ENABLED' : 'DISABLED'}`, 'var(--success)');
+                break;
+
+            case 'getip':
+                print("Fetching IP...", 'var(--text-sec)');
+                try {
+                    const res = await fetch('https://api.ipify.org?format=json');
+                    const data = await res.json();
+                    print(`IP: ${data.ip}`, 'var(--success)');
+                } catch(e) {
+                    print("Error fetching IP.", 'var(--danger)');
+                }
+                break;
+
+            case 'fuck_you':
+                print("Tracing route...", 'var(--danger)');
+                try {
+                    const res = await fetch('https://ipapi.co/json/');
+                    const data = await res.json();
+                    setTimeout(() => print(`IP: ${data.ip}`, 'var(--danger)'), 500);
+                    setTimeout(() => print(`Country: ${data.country_name}`, 'var(--danger)'), 1500);
+                    setTimeout(() => print(`City: ${data.city}`, 'var(--danger)'), 1700);
+                    setTimeout(() => print(`ISP: ${data.org}`, 'var(--danger)'), 2000);
+                    setTimeout(() => print(`Postal code: ${data.postal}`, 'var(--danger)'), 2200);
+                    setTimeout(() => print(`Country population: ${data.country_population}`, 'var(--danger)'), 2200);
+                    setTimeout(() => print(`Lat: ${data.latitude}`, 'var(--danger)'), 2500);
+                    setTimeout(() => print(`Lon: ${data.longitude}`, 'var(--danger)'), 2600);
+                    setTimeout(() => print(`Timezone: ${data.timezone}`, 'var(--danger)'), 2800);    
+                } catch(e) {
+                    print("Trace failed. You are lucky.", 'var(--warning)');
+                }
+                break;
+
+            case 'do_not_enter':
+                print("INITIATING SYSTEM CRASH...", 'red');
+                setTimeout(() => {
+                    switchTheme('err');
+                    document.body.classList.add('crashing');
+                    
+                    // Flash effect
+                    let count = 0;
+                    const flash = setInterval(() => {
+                        document.body.style.backgroundColor = count % 2 === 0 ? 'white' : 'black';
+                        count++;
+                        if(count > 10) clearInterval(flash);
+                    }, 100);
+
+                    setTimeout(() => {
+                        document.getElementById('main-content').style.display = 'none';
+                        consoleWin.style.display = 'none';
+                        cvs.style.display = 'none';
+                        document.body.classList.remove('crashing');
+                        document.body.style.backgroundColor = 'black';
+                        
+                        const final = document.getElementById('final-screen');
+                        final.style.display = 'flex';
+                    }, 2500);
+
+                }, 1000);
+                break;
+
+            default:
+                print(`Command '${cmd}' not found.`, 'var(--danger)');
+        }
+    }
+
+
+    // --- 4. TIME COUNTERS & INIT ---
+    const ageSpan = document.getElementById("age-years");
+    const codeSpan = document.getElementById("code-years");
+    const startDate = new Date("2009-09-09T00:00:00Z");
+    const startDateCode = new Date("2022-01-01T00:00:00Z");
+
+    function updateStats() {
+        const now = new Date();
+        const yearMs = 365.25 * 24 * 60 * 60 * 1000;
+        if(ageSpan) ageSpan.textContent = ((now - startDate) / yearMs).toFixed(8);
+        if(codeSpan) codeSpan.textContent = ((now - startDateCode) / yearMs).toFixed(8);
+        requestAnimationFrame(updateStats);
+    }
+    updateStats();
+
+    // Init Theme on load
+    (function initTheme() {
+        const saved = getCookie('mc_theme');
+        if(saved && THEMES.includes(saved)) {
+            switchTheme(saved);
+        } else {
+            switchTheme('dark');
+        }
+    })();
+
+    // Staggered typing logic (existing)
+    const typeObserver = new IntersectionObserver((entries) => {
+        const visibleEntries = entries.filter(e => e.isIntersecting);
+        visibleEntries.forEach((entry, index) => {
+            setTimeout(() => { startTyping(entry.target); }, index * 300); 
+            typeObserver.unobserve(entry.target);
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.type-effect').forEach(el => {
+        el.dataset.fullText = el.innerText.trim();
+        el.innerText = ''; 
+        typeObserver.observe(el);
+    });
+
+    function startTyping(el) {
+        const text = el.dataset.fullText;
+        const cursor = document.createElement('span');
+        cursor.className = 'typing-cursor';
+        cursor.innerText = '_';
+        el.innerText = ''; 
+        el.appendChild(cursor);
+        let i = 0;
+        function typeChar() {
+            if (i < text.length) {
+                cursor.before(text.charAt(i));
+                i++;
+                setTimeout(typeChar, 25 + (Math.random() * 20));
+            }
+        }
+        typeChar();
+    }
+
+</script>
+
+</body>
+</html>
