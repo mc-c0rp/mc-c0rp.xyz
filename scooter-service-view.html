@@ -2,7 +2,7 @@
 <html lang="ru" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Service Scooter App</title>
     
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
@@ -30,7 +30,6 @@
             --radius: 12px;
             --map-border: 2px solid white;
             
-            /* Ring Button Specific */
             --ring-bg: #fffbeb;
             --ring-text: #b45309;
             --ring-border: #fcd34d;
@@ -85,12 +84,16 @@
 
         /* --- BASE --- */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
         body { 
             margin: 0; padding: 0; 
             font-family: 'JetBrains Mono', monospace;
             background: var(--background); 
             color: var(--text); 
-            overflow: hidden; height: 100vh; 
+            overflow: hidden; 
+            /* FIX FOR IOS SAFARI (ADDRESS BAR) */
+            height: 100vh; /* Fallback */
+            height: 100dvh; /* Dynamic Viewport Height */
             transition: background 0.3s, color 0.3s;
         }
 
@@ -101,13 +104,20 @@
 
         /* --- Bottom Nav --- */
         .bottom-nav {
-            height: 65px; background: var(--surface); border-top: 1px solid var(--border);
+            background: var(--surface); 
+            border-top: 1px solid var(--border);
             display: flex; justify-content: space-around; align-items: center; z-index: 100;
+            
+            /* FIX FOR IOS BOTTOM SAFE AREA */
+            padding-bottom: env(safe-area-inset-bottom);
+            height: calc(65px + env(safe-area-inset-bottom));
         }
         .nav-item {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             color: var(--text-sec); font-size: 10px; border: none; background: none; cursor: pointer;
             font-family: inherit; gap: 4px;
+            height: 100%; /* Fill available height */
+            padding-bottom: 4px; /* Slight adjustment */
         }
         .nav-item i { font-size: 24px; }
         .nav-item.active { color: var(--primary); font-weight: 700; }
@@ -119,7 +129,12 @@
             position: absolute; top: 16px; left: 16px; right: 16px;
             display: flex; gap: 8px; overflow-x: auto; z-index: 10;
             padding-bottom: 4px;
+            /* Hide scrollbar */
+            scrollbar-width: none; 
+            -ms-overflow-style: none;
         }
+        .map-filters::-webkit-scrollbar { display: none; }
+
         .filter-chip {
             background: var(--surface); color: var(--text); padding: 8px 16px; border-radius: 20px;
             font-size: 12px; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -220,7 +235,11 @@
         .sheet {
             position: fixed; bottom: 0; left: 0; width: 100%;
             background: var(--surface); border-radius: 24px 24px 0 0;
-            padding: 24px; box-shadow: 0 -4px 30px rgba(0,0,0,0.2);
+            padding: 24px; 
+            /* FIX FOR IOS SAFE AREA IN SHEET */
+            padding-bottom: calc(24px + env(safe-area-inset-bottom));
+            
+            box-shadow: 0 -4px 30px rgba(0,0,0,0.2);
             z-index: 201; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
             border-top: 1px solid var(--border);
         }
@@ -247,7 +266,6 @@
         .btn-primary { background: var(--text); color: var(--surface); }
         .btn-secondary { background: var(--background); color: var(--text); border: 1px solid var(--border); }
         
-        /* Themed Ring Button */
         .btn-ring { 
             background: var(--ring-bg); 
             color: var(--ring-text); 
@@ -256,7 +274,6 @@
         
         .btn-status { background: var(--primary); color: white; grid-column: span 2; }
         
-        /* Battery Bar */
         .bat-visual { width: 100%; height: 4px; background: var(--border); border-radius: 2px; margin-top: 8px; overflow: hidden; }
         .bat-fill { height: 100%; border-radius: 2px; }
 
@@ -322,7 +339,7 @@
             <div class="profile-header">
                 <div class="avatar">M</div>
                 <div class="p-info">
-                    <h3>Max Technician</h3>
+                    <h3>димон1337</h3>
                     <p>ID: #4092 • Anenii Noi Hub</p>
                 </div>
             </div>
@@ -419,8 +436,8 @@
             lat: baseLat + (Math.random() - 0.5) * 0.02,
             lng: baseLng + (Math.random() - 0.5) * 0.02,
             bat: type === 'low' ? Math.floor(Math.random() * 15) : Math.floor(Math.random() * 60 + 40),
-            iotPct: Math.floor(Math.random() * 100), // IoT Charge %
-            iotVolt: (3.2 + Math.random() * 1.0).toFixed(1), // IoT Voltage
+            iotPct: Math.floor(Math.random() * 100),
+            iotVolt: (3.2 + Math.random() * 1.0).toFixed(1),
             status: type, 
             updated: Math.floor(Math.random() * 20)
         };
@@ -428,7 +445,7 @@
 
     // 2. FILTER STATE
     let currentFilters = {
-        status: 'all', // all, low, service
+        status: 'all', 
         minBat: 0,
         minIoT: 0,
         minVolt: 3.0
@@ -451,7 +468,6 @@
         if(map && map.getStyle()) {
             const targetStyle = mapStyles[themeName];
             const currentStyle = map.getStyle().sprite;
-            // Only update if switching base style (light/dark)
             const isDarkTarget = targetStyle.includes('dark');
             const isDarkCurrent = currentStyle && currentStyle.includes('dark');
             if(isDarkTarget !== isDarkCurrent) {
@@ -491,7 +507,6 @@
         markers.length = 0;
 
         scooters.forEach(s => {
-            // LOGIC: Check all filters
             if (currentFilters.status !== 'all' && s.status !== currentFilters.status) return;
             if (s.bat < currentFilters.minBat) return;
             if (s.iotPct < currentFilters.minIoT) return;
@@ -515,8 +530,6 @@
     function renderList() {
         const container = document.getElementById('list-content');
         
-        // Apply filters to list too? Usually separate, but let's keep list showing all for now, 
-        // or we can filter list too. Let's filter list to match map.
         const filtered = scooters.filter(s => {
              if (currentFilters.status !== 'all' && s.status !== currentFilters.status) return false;
              if (s.bat < currentFilters.minBat) return false;
@@ -570,12 +583,10 @@
         const iotVal = parseInt(document.getElementById('rng-iot').value);
         const voltVal = parseInt(document.getElementById('rng-volt').value) / 10;
 
-        // UI Updates
         document.getElementById('lbl-bat').innerText = `Более ${batVal}%`;
         document.getElementById('lbl-iot').innerText = `Более ${iotVal}%`;
         document.getElementById('lbl-volt').innerText = `Более ${voltVal}V`;
 
-        // Logic Updates
         currentFilters.minBat = batVal;
         currentFilters.minIoT = iotVal;
         currentFilters.minVolt = voltVal;
@@ -608,7 +619,6 @@
         document.getElementById('d-code').innerText = s.code;
         document.getElementById('d-bat').innerText = s.bat + '%';
         
-        // Updated IoT display
         document.getElementById('d-iot-pct').innerText = s.iotPct + '%';
         document.getElementById('d-iot-volt').innerText = s.iotVolt + 'V';
         
