@@ -15,193 +15,6 @@
     
     <style>
         /* --- THEMES --- */
-
-        /* --- WINDOWS 95 THEME --- */
-        [data-theme="95"] {
-            --primary: #000080;
-            --surface: #c0c0c0;
-            --background: #008080; /* Fallback */
-            --text: #000000;
-            --text-sec: #444444;
-            --border: #dfdfdf;
-            --radius: 0px;
-            --card-shadow: 2px 2px 0px #000;
-            --console-bg: #c0c0c0;
-            --console-header: #000080;
-            --success: #000080;
-        }
-
-        [data-theme="95"] body {
-            background-image: url('https://cdn.neowin.com/news/images/galleries/4964/1747581045_windows_95_setup_4k.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            font-family: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, sans-serif;
-        }
-
-        /* 95 Window Style */
-        [data-theme="95"] .panel, 
-        [data-theme="95"] .profile-header, 
-        [data-theme="95"] .stat-card,
-        [data-theme="95"] .console-window,
-        [data-theme="95"] .link-btn {
-            border: 2px solid #dfdfdf;
-            border-right-color: #000;
-            border-bottom-color: #000;
-            border-left-color: #fff;
-            border-top-color: #fff;
-            box-shadow: none;
-            background: #c0c0c0;
-        }
-
-        /* 95 Title Bar Logic */
-        [data-theme="95"] .panel-header,
-        [data-theme="95"] .console-bar {
-            background: linear-gradient(90deg, #000080, #1084d0);
-            color: white;
-            padding: 4px 8px;
-            /* Negative margin to pull header to edges */
-            margin: -22px -22px 12px -22px; 
-            border: none;
-            display: flex;
-            align-items: center;
-        }
-        
-        /* Fake Buttons for 95 */
-        [data-theme="95"] .panel-header::after,
-        [data-theme="95"] .console-bar::after {
-            content: "✖";
-            margin-left: auto;
-            background: #c0c0c0;
-            color: black;
-            width: 16px; height: 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 10px;
-            border: 1px solid #fff;
-            border-right-color: #000;
-            border-bottom-color: #000;
-            box-shadow: 1px 1px 0 #000;
-            cursor: pointer;
-        }
-
-        /* Specific fixes for Profile Header in 95 */
-        [data-theme="95"] .profile-header {
-            flex-direction: column;
-            align-items: flex-start;
-            padding-top: 30px; /* Space for fake header */
-            position: relative;
-        }
-        [data-theme="95"] .profile-header::before {
-            content: "User Profile.exe";
-            position: absolute; top: 2px; left: 2px; right: 2px; height: 20px;
-            background: #000080; color: white;
-            display: flex; align-items: center; padding-left: 5px;
-            font-size: 12px; font-weight: bold;
-        }
-        [data-theme="95"] .profile-header::after {
-            content: "X";
-            position: absolute; top: 4px; right: 4px;
-            width: 16px; height: 16px;
-            background: #c0c0c0; color: black;
-            font-size: 10px; text-align: center; line-height: 14px;
-            border: 2px solid #fff; border-right-color: #000; border-bottom-color: #000;
-        }
-
-
-        /* --- WINDOWS XP THEME --- */
-        [data-theme="xp"] {
-            --primary: #2f71f0;
-            --surface: #ffffff;
-            --background: #2f71f0;
-            --text: #000000;
-            --text-sec: #444;
-            --border: #2f71f0;
-            --radius: 8px; /* Rounded top corners only via override */
-            --card-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-            --console-bg: #fff;
-            --console-header: #2f71f0;
-        }
-
-        [data-theme="xp"] body {
-            background-image: url('https://preview.redd.it/5120x1440-windows-original-background-v0-j8s0idew2w8c1.jpeg?auto=webp&s=80f980aa181ba09093756535b5a438b04b6a5cc2');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            font-family: "Tahoma", "Verdana", sans-serif;
-        }
-
-        /* XP Window Style */
-        [data-theme="xp"] .panel,
-        [data-theme="xp"] .console-window {
-            border: 1px solid #0054e3;
-            border-radius: 8px 8px 0 0;
-            overflow: hidden; /* Clip contents for rounded corners */
-            padding-top: 0;
-        }
-
-        /* XP Title Bar */
-        [data-theme="xp"] .panel-header,
-        [data-theme="xp"] .console-bar {
-            background: linear-gradient(180deg, #2f71f0 0%, #0054e3 100%);
-            color: white;
-            text-shadow: 1px 1px rgba(0,0,0,0.5);
-            padding: 8px 12px;
-            margin: -21px -21px 15px -21px; /* Pull to edges */
-            border-bottom: 2px solid #e68b2c; /* The orange line */
-            height: 35px;
-        }
-
-        /* XP Close Button */
-        [data-theme="xp"] .panel-header::after,
-        [data-theme="xp"] .console-bar::after {
-            content: "✖";
-            margin-left: auto;
-            background: radial-gradient(circle at center, #ff5e5e 0%, #d62828 100%);
-            color: white;
-            width: 20px; height: 20px;
-            border-radius: 3px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 12px; border: 1px solid #fff;
-            box-shadow: 0 0 2px black;
-            cursor: pointer;
-            text-shadow: none;
-        }
-
-        /* XP Tags & Chips fix */
-        [data-theme="xp"] .tag { background: #f0f0f0; border-color: #ccc; border-radius: 4px; }
-        [data-theme="xp"] .theme-chip { background: linear-gradient(180deg, #fff 0%, #ece9d8 100%); color: black; border-color: #0054e3; border-radius: 6px; }
-        [data-theme="xp"] .theme-chip.active { background: linear-gradient(180deg, #e3dfd0 0%, #fff 100%); font-weight: bold; }
-        
-        /* XP Profile Header Specifics */
-        [data-theme="xp"] .profile-header {
-            border: 1px solid #0054e3;
-            border-radius: 8px 8px 0 0;
-            background: #fff;
-            position: relative;
-            margin-top: 30px; /* Space for the header we will fake */
-            overflow: visible;
-        }
-        /* XP Header Bar for Profile */
-        [data-theme="xp"] .profile-header::before {
-            content: "mc_c0rp - Profile";
-            position: absolute; top: -28px; left: -1px; right: -1px; height: 28px;
-            background: linear-gradient(180deg, #2f71f0 0%, #0054e3 100%);
-            border-radius: 8px 8px 0 0;
-            color: white; font-weight: bold; padding-left: 10px;
-            display: flex; align-items: center;
-            border: 1px solid #0054e3; border-bottom: 2px solid #e68b2c;
-            text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
-        }
-        /* XP Close Button for Profile */
-        [data-theme="xp"] .profile-header::after {
-            content: "✖";
-            position: absolute; top: -24px; right: 6px;
-            width: 20px; height: 20px;
-            background: #d62828; color: white;
-            border-radius: 3px; border: 1px solid white;
-            display: flex; align-items: center; justify-content: center; font-size: 12px;
-            box-shadow: 0 0 2px black;
-        }
         :root {
             --primary: #2563eb;
             --surface: #ffffff;
@@ -217,6 +30,8 @@
             --eye-glow: rgba(37, 99, 235, 0.5);
             --console-bg: rgba(255, 255, 255, 0.95);
             --console-header: #e0e0e0;
+            --header-bg: transparent; /* For OS themes */
+            --header-text: inherit;   /* For OS themes */
         }
 
         [data-theme="dark"] {
@@ -295,6 +110,44 @@
             --console-header: #4d0000;
         }
 
+        /* --- WINDOWS 95 THEME --- */
+        [data-theme="95"] {
+            --primary: #000080; /* Classic Navy */
+            --surface: #c0c0c0; /* Silver */
+            --background: #008080; /* Teal fallback */
+            --text: #000000;
+            --text-sec: #404040;
+            --border: #dfdfdf;
+            --radius: 0px;
+            --card-shadow: none;
+            --eye-glow: rgba(0, 0, 128, 0.3);
+            --console-bg: #c0c0c0;
+            --console-header: #000080;
+            --header-bg: #000080;
+            --header-text: #ffffff;
+            --success: #008000;
+            --warning: #808000;
+            --danger: #ff0000;
+        }
+
+        /* --- WINDOWS XP THEME --- */
+        [data-theme="xp"] {
+            --primary: #0054e3; /* Luna Blue */
+            --surface: #ffffff;
+            --background: #2b7ae3;
+            --text: #000000;
+            --text-sec: #555555;
+            --border: #0054e3;
+            --radius: 4px;
+            --card-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            --eye-glow: rgba(0, 84, 227, 0.4);
+            --console-bg: #ffffff;
+            --console-header: linear-gradient(to bottom, #245edb 0%, #3f8cf3 100%);
+            --header-bg: linear-gradient(to bottom, #0058ee 0%, #3593ff 4%, #288eef 6%, #127dff 8%, #0369fc 10%, #0262ee 14%, #0057e5 20%, #0054e3 24%, #0055eb 56%, #005caa 66%, #0052bc 76%, #0052bc 86%, #0052bc 96%, #0047b0 100%);
+            --header-text: #ffffff;
+        }
+
+
         /* --- BASE & SCROLLBAR HIDING --- */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
@@ -319,6 +172,19 @@
             display: flex;
             justify-content: center;
             overflow-x: hidden;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* SPECIFIC BACKGROUNDS FOR OS THEMES */
+        [data-theme="95"] body {
+            background-image: url('https://cdn.neowin.com/news/images/galleries/4964/1747581045_windows_95_setup_4k.jpg');
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Non-mono for 95 feeling */
+        }
+        [data-theme="xp"] body {
+            background-image: url('https://preview.redd.it/5120x1440-windows-original-background-v0-j8s0idew2w8c1.jpeg?auto=webp&s=80f980aa181ba09093756535b5a438b04b6a5cc2');
+            font-family: 'Tahoma', 'Verdana', sans-serif; /* XP Font */
         }
 
         a { color: inherit; text-decoration: none; }
@@ -351,6 +217,8 @@
             font-family: monospace;
         }
         [data-theme="dark"] .block-id { color: #555; }
+        /* Hide IDs on OS themes for cleaner look */
+        [data-theme="95"] .block-id, [data-theme="xp"] .block-id { display: none; }
 
         /* --- CYBER EYE (REPLACES REACTOR) --- */
         .profile-header {
@@ -454,6 +322,7 @@
             white-space: nowrap; transition: 0.2s;
         }
         .theme-chip.active { background: var(--text); color: var(--background); border-color: var(--text); }
+        
         [data-theme="neon"] .theme-chip.active { background: var(--primary); color: #000; }
         [data-theme="retro"] .theme-chip { border-radius: 0; }
         [data-theme="retro"] .theme-chip.active { background: var(--primary); color: var(--background); }
@@ -461,6 +330,20 @@
         [data-theme="err"] .theme-chip.active { background: white; color: black; }
         [data-theme="red"] .theme-chip { border-color: #800000; color: #800000; background: #1a0505; }
         [data-theme="red"] .theme-chip.active { background: #ff0000; color: #000; border-color: #ff0000; box-shadow: 0 0 10px red; }
+
+        /* 95 and XP Chip Styles */
+        [data-theme="95"] .theme-chip { 
+            border-radius: 0; 
+            background: #c0c0c0; border-top: 2px solid white; border-left: 2px solid white; border-right: 2px solid black; border-bottom: 2px solid black; 
+            color: black;
+        }
+        [data-theme="95"] .theme-chip.active { 
+            background: #c0c0c0; border-top: 2px solid black; border-left: 2px solid black; border-right: 2px solid white; border-bottom: 2px solid white; 
+            font-weight: bold;
+        }
+        [data-theme="xp"] .theme-chip { border-radius: 6px; }
+        [data-theme="xp"] .theme-chip.active { background: #245edb; border-color: #245edb; color: white; }
+
 
         /* Console Trigger & Matrix Toggle */
         .extra-controls { display: flex; gap: 10px; align-items: center; }
@@ -472,6 +355,8 @@
             transition: 0.2s;
         }
         .icon-btn:hover { background: var(--border); }
+        [data-theme="95"] .icon-btn { border-radius: 0; border: 2px outset white; background: #c0c0c0; }
+        [data-theme="95"] .icon-btn:active { border: 2px inset white; }
         
         /* Matrix Switch (Custom Checkbox) */
         .matrix-switch {
@@ -496,6 +381,10 @@
 
         /* Panels */
         .section-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--text-sec); text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* 95/XP Title styling overrides */
+        [data-theme="95"] .section-title, [data-theme="xp"] .section-title { color: white; text-shadow: 1px 1px 2px black; }
+
         .panel { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; box-shadow: var(--card-shadow); transition: transform 0.2s, opacity 0.3s; }
         .panel:hover { transform: translateY(-2px); border-color: var(--primary); }
         .panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
@@ -507,6 +396,102 @@
         [data-theme="err"] .tag { border: 1px solid white; background: black; color: white; border-radius: 0; }
         [data-theme="red"] .tag { border: 1px solid #ff0000; background: #1a0505; color: #ff0000; }
         
+        /* --- OS STYLES (95 & XP) FOR PANELS --- */
+        
+        /* Windows 95 Panel Override */
+        [data-theme="95"] .panel, [data-theme="95"] .stat-card, [data-theme="95"] .profile-header {
+            border: 2px solid #dfdfdf;
+            border-top-color: white; border-left-color: white;
+            border-bottom-color: #404040; border-right-color: #404040;
+            box-shadow: 1px 1px 0 black;
+            padding: 4px;
+            padding-top: 0;
+            border-radius: 0;
+            background: #c0c0c0;
+        }
+        [data-theme="95"] .panel-header, [data-theme="95"] .stat-label {
+            background: var(--header-bg);
+            color: var(--header-text);
+            padding: 4px 6px;
+            margin-bottom: 10px;
+            margin-top: 4px;
+        }
+        [data-theme="95"] .stat-card .stat-value { padding-left: 6px; }
+        [data-theme="95"] .ph-icon { color: white; font-size: 14px; }
+        [data-theme="95"] .profile-header { padding: 4px; flex-direction: column; align-items: stretch; gap: 0; }
+        [data-theme="95"] .profile-header .eye-container { display: none; } /* Hide eye in 95 */
+        [data-theme="95"] .profile-info { padding: 10px; border: 2px inset white; background: white; margin-top: 24px; }
+        /* 95 Fake Window Controls */
+        [data-theme="95"] .panel-header::after, [data-theme="95"] .stat-label::after {
+            content: "_ □ X";
+            font-family: sans-serif;
+            font-size: 10px;
+            font-weight: bold;
+            color: black;
+            background: #c0c0c0;
+            padding: 0 4px;
+            border: 2px outset white;
+            margin-left: auto;
+            cursor: pointer;
+            letter-spacing: 4px;
+        }
+        /* 95 Title Bar for Profile */
+        [data-theme="95"] .profile-header::before {
+            content: "User Profile";
+            background: var(--header-bg); color: white;
+            padding: 4px 6px; font-weight: bold; font-size: 12px;
+            display: flex; align-items: center;
+        }
+
+        /* Windows XP Panel Override */
+        [data-theme="xp"] .panel, [data-theme="xp"] .stat-card, [data-theme="xp"] .profile-header {
+            border: 3px solid #0054e3;
+            border-top-left-radius: 8px; border-top-right-radius: 8px;
+            border-bottom-left-radius: 0; border-bottom-right-radius: 0;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            padding: 0; /* Header takes top space */
+            background: #fff;
+            overflow: hidden;
+        }
+        [data-theme="xp"] .panel-header, [data-theme="xp"] .stat-label {
+            background: var(--console-header);
+            color: white;
+            padding: 8px 10px;
+            margin: 0;
+            font-family: 'Tahoma', sans-serif;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+            border-bottom: 2px solid #0054e3;
+        }
+        [data-theme="xp"] .ph-icon { color: #fff; filter: drop-shadow(0 0 2px rgba(0,0,0,0.5)); }
+        [data-theme="xp"] .highlight-text, [data-theme="xp"] .tags, [data-theme="xp"] .exp-item, [data-theme="xp"] .links-grid { padding: 10px 15px; }
+        [data-theme="xp"] .stat-value { padding: 15px; color: black; }
+        [data-theme="xp"] .profile-header { flex-direction: column; align-items: stretch; gap: 0; }
+        [data-theme="xp"] .profile-header .eye-container { display: none; }
+        [data-theme="xp"] .profile-info { padding: 20px; background: linear-gradient(to bottom, #f0f0f0 0%, #fff 100%); }
+        [data-theme="xp"] .profile-info h1 { color: #000; text-shadow: none; }
+        
+        /* XP Fake Window Controls */
+        [data-theme="xp"] .panel-header::after, [data-theme="xp"] .stat-label::after {
+            content: "X";
+            display: flex; align-items: center; justify-content: center;
+            width: 20px; height: 20px;
+            background: linear-gradient(to bottom, #e08c78 0%, #d44d32 50%, #b3260c 100%);
+            border: 1px solid #fff;
+            border-radius: 3px;
+            font-family: sans-serif; font-weight: bold; font-size: 10px;
+            margin-left: auto;
+            box-shadow: 0 0 2px black;
+            text-shadow: 0 0 1px black;
+            cursor: pointer;
+        }
+        /* XP Title Bar for Profile */
+        [data-theme="xp"] .profile-header::before {
+            content: "mc_c0rp - Properties";
+            background: var(--console-header); color: white;
+            padding: 8px 10px; font-weight: bold; font-size: 13px; font-family: 'Tahoma', sans-serif;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+        }
+
         .highlight-text { font-size: 13px; line-height: 1.5; color: var(--text-sec); min-height: 40px; }
         .highlight-text strong { color: var(--text); }
         [data-theme="err"] .highlight-text, [data-theme="err"] h1, [data-theme="err"] .ph-title { text-shadow: 2px 0 0 red, -2px 0 0 blue; animation: text-flicker 3s infinite alternate; }
@@ -523,6 +508,7 @@
         .link-btn { text-decoration: none; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; font-size: 13px; transition: 0.2s; }
         .link-btn:hover { background: var(--background); border-color: var(--text); }
         .link-btn.primary { background: var(--text); color: var(--surface); border: none; }
+        
         [data-theme="neon"] .link-btn.primary { background: var(--primary); color: #000; }
         [data-theme="retro"] .link-btn.primary { color: var(--background); }
         [data-theme="retro"] .link-btn { border-radius: 0; }
@@ -531,8 +517,14 @@
         [data-theme="red"] .link-btn { background: #1a0505; color: #ff0000; border-color: #ff0000; }
         [data-theme="red"] .link-btn:hover { background: #ff0000; color: #000; }
         [data-theme="red"] .link-btn.primary { background: #ff0000; color: #000; }
+        
+        /* OS Link Buttons */
+        [data-theme="95"] .link-btn { border-radius: 0; border: 2px outset white; background: #c0c0c0; color: black; }
+        [data-theme="95"] .link-btn:active { border-style: inset; }
+        [data-theme="95"] .link-btn.primary { font-weight: 800; border: 2px solid black; }
 
         .footer { text-align: center; margin-top: 40px; font-size: 10px; color: var(--text-sec); opacity: 0.5; }
+        [data-theme="95"] .footer, [data-theme="xp"] .footer { color: white; text-shadow: 1px 1px 1px black; opacity: 1; }
 
         /* --- DRAGGABLE CONSOLE --- */
         .console-window {
@@ -550,6 +542,9 @@
             overflow: hidden;
             backdrop-filter: blur(5px);
         }
+        
+        [data-theme="95"] .console-window { border-radius: 0; border: 2px outset white; background: #c0c0c0; color: black; }
+        [data-theme="xp"] .console-window { border-radius: 8px 8px 0 0; border: 3px solid #0054e3; background: white; color: black; }
 
         .console-bar {
             background: var(--console-header);
@@ -559,9 +554,16 @@
             user-select: none;
             border-bottom: 1px solid var(--border);
         }
+        [data-theme="95"] .console-bar { color: white; border: none; margin: 2px; }
+        [data-theme="xp"] .console-bar { color: white; border: none; }
+        
         .console-bar:active { cursor: grabbing; }
         .console-title { font-size: 12px; font-weight: bold; color: var(--text); }
+        [data-theme="95"] .console-title, [data-theme="xp"] .console-title { color: white; }
+        
         .console-close { cursor: pointer; color: var(--danger); font-weight: bold; }
+        [data-theme="95"] .console-close { color: white; background: #c0c0c0; border: 2px outset white; padding: 0 4px; color: black; font-family: sans-serif; }
+        [data-theme="xp"] .console-close { color: white; background: #d44d32; border: 1px solid white; border-radius: 3px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
 
         .console-body {
             flex: 1;
@@ -571,14 +573,20 @@
             font-size: 12px;
             /* Scrollbar hidden via global rules above */
         }
+        [data-theme="95"] .console-body { color: black; font-family: 'Courier New', monospace; }
+        [data-theme="xp"] .console-body { color: black; font-family: 'Lucida Console', monospace; }
+
         .console-output { white-space: pre-wrap; margin-bottom: 10px; line-height: 1.4; }
         .console-input-line { display: flex; gap: 8px; align-items: center; }
         .console-prompt { color: var(--success); font-weight: bold; }
         [data-theme="red"] .console-prompt { color: red; }
+        [data-theme="95"] .console-prompt, [data-theme="xp"] .console-prompt { color: #000080; }
+        
         .console-input {
             background: transparent; border: none; outline: none;
             color: var(--text); font-family: inherit; font-size: 12px; flex: 1;
         }
+        [data-theme="95"] .console-input, [data-theme="xp"] .console-input { color: black; }
 
         /* --- GAME OVERLAY --- */
         #game-area {
@@ -646,10 +654,10 @@
             <div class="theme-chip" onclick="switchTheme('light', this)">LIGHT</div>
             <div class="theme-chip" onclick="switchTheme('neon', this)">HACKER</div>
             <div class="theme-chip" onclick="switchTheme('retro', this)">RETRO</div>
+            <div class="theme-chip" onclick="switchTheme('95', this)">95</div>
+            <div class="theme-chip" onclick="switchTheme('xp', this)">XP</div>
             <div class="theme-chip" onclick="switchTheme('err', this)">ERR</div>
             <div class="theme-chip" onclick="switchTheme('red', this)">CODE: RED</div>
-            <div class="theme-chip" onclick="switchTheme('95', this)">WIN 95</div>
-            <div class="theme-chip" onclick="switchTheme('xp', this)">WIN XP</div> 
         </div>
 
         <div class="extra-controls">
@@ -825,7 +833,7 @@
 
 <script>
     // --- 1. THEME & COOKIE LOGIC ---
-    const THEMES = ['dark', 'light', 'neon', 'retro', '95', 'xp', 'err', 'red'];
+    const THEMES = ['dark', 'light', 'neon', 'retro', 'err', 'red', '95', 'xp'];
     let matrixEnabled = false;
     let sv_cheats = false;
 
@@ -1154,7 +1162,7 @@
                 print("Available commands:");
                 print("  dino                 - Play ASCII Dino game");
                 print("  del <id>             - Delete a block by ID");
-                print("  set_theme <id>       - dark, light, neon, retro, err, red");
+                print("  set_theme <id>       - dark, light, neon, retro, err, red, 95, xp");
                 print("  do_not_enter         - Don't do it.");
                 print("  matrix               - Toggle matrix background");
                 print("  fuck_you             - Dox yourself");
