@@ -15,6 +15,193 @@
     
     <style>
         /* --- THEMES --- */
+
+        /* --- WINDOWS 95 THEME --- */
+        [data-theme="95"] {
+            --primary: #000080;
+            --surface: #c0c0c0;
+            --background: #008080; /* Fallback */
+            --text: #000000;
+            --text-sec: #444444;
+            --border: #dfdfdf;
+            --radius: 0px;
+            --card-shadow: 2px 2px 0px #000;
+            --console-bg: #c0c0c0;
+            --console-header: #000080;
+            --success: #000080;
+        }
+
+        [data-theme="95"] body {
+            background-image: url('https://cdn.neowin.com/news/images/galleries/4964/1747581045_windows_95_setup_4k.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, sans-serif;
+        }
+
+        /* 95 Window Style */
+        [data-theme="95"] .panel, 
+        [data-theme="95"] .profile-header, 
+        [data-theme="95"] .stat-card,
+        [data-theme="95"] .console-window,
+        [data-theme="95"] .link-btn {
+            border: 2px solid #dfdfdf;
+            border-right-color: #000;
+            border-bottom-color: #000;
+            border-left-color: #fff;
+            border-top-color: #fff;
+            box-shadow: none;
+            background: #c0c0c0;
+        }
+
+        /* 95 Title Bar Logic */
+        [data-theme="95"] .panel-header,
+        [data-theme="95"] .console-bar {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            color: white;
+            padding: 4px 8px;
+            /* Negative margin to pull header to edges */
+            margin: -22px -22px 12px -22px; 
+            border: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Fake Buttons for 95 */
+        [data-theme="95"] .panel-header::after,
+        [data-theme="95"] .console-bar::after {
+            content: "✖";
+            margin-left: auto;
+            background: #c0c0c0;
+            color: black;
+            width: 16px; height: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px;
+            border: 1px solid #fff;
+            border-right-color: #000;
+            border-bottom-color: #000;
+            box-shadow: 1px 1px 0 #000;
+            cursor: pointer;
+        }
+
+        /* Specific fixes for Profile Header in 95 */
+        [data-theme="95"] .profile-header {
+            flex-direction: column;
+            align-items: flex-start;
+            padding-top: 30px; /* Space for fake header */
+            position: relative;
+        }
+        [data-theme="95"] .profile-header::before {
+            content: "User Profile.exe";
+            position: absolute; top: 2px; left: 2px; right: 2px; height: 20px;
+            background: #000080; color: white;
+            display: flex; align-items: center; padding-left: 5px;
+            font-size: 12px; font-weight: bold;
+        }
+        [data-theme="95"] .profile-header::after {
+            content: "X";
+            position: absolute; top: 4px; right: 4px;
+            width: 16px; height: 16px;
+            background: #c0c0c0; color: black;
+            font-size: 10px; text-align: center; line-height: 14px;
+            border: 2px solid #fff; border-right-color: #000; border-bottom-color: #000;
+        }
+
+
+        /* --- WINDOWS XP THEME --- */
+        [data-theme="xp"] {
+            --primary: #2f71f0;
+            --surface: #ffffff;
+            --background: #2f71f0;
+            --text: #000000;
+            --text-sec: #444;
+            --border: #2f71f0;
+            --radius: 8px; /* Rounded top corners only via override */
+            --card-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            --console-bg: #fff;
+            --console-header: #2f71f0;
+        }
+
+        [data-theme="xp"] body {
+            background-image: url('https://preview.redd.it/5120x1440-windows-original-background-v0-j8s0idew2w8c1.jpeg?auto=webp&s=80f980aa181ba09093756535b5a438b04b6a5cc2');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "Tahoma", "Verdana", sans-serif;
+        }
+
+        /* XP Window Style */
+        [data-theme="xp"] .panel,
+        [data-theme="xp"] .console-window {
+            border: 1px solid #0054e3;
+            border-radius: 8px 8px 0 0;
+            overflow: hidden; /* Clip contents for rounded corners */
+            padding-top: 0;
+        }
+
+        /* XP Title Bar */
+        [data-theme="xp"] .panel-header,
+        [data-theme="xp"] .console-bar {
+            background: linear-gradient(180deg, #2f71f0 0%, #0054e3 100%);
+            color: white;
+            text-shadow: 1px 1px rgba(0,0,0,0.5);
+            padding: 8px 12px;
+            margin: -21px -21px 15px -21px; /* Pull to edges */
+            border-bottom: 2px solid #e68b2c; /* The orange line */
+            height: 35px;
+        }
+
+        /* XP Close Button */
+        [data-theme="xp"] .panel-header::after,
+        [data-theme="xp"] .console-bar::after {
+            content: "✖";
+            margin-left: auto;
+            background: radial-gradient(circle at center, #ff5e5e 0%, #d62828 100%);
+            color: white;
+            width: 20px; height: 20px;
+            border-radius: 3px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; border: 1px solid #fff;
+            box-shadow: 0 0 2px black;
+            cursor: pointer;
+            text-shadow: none;
+        }
+
+        /* XP Tags & Chips fix */
+        [data-theme="xp"] .tag { background: #f0f0f0; border-color: #ccc; border-radius: 4px; }
+        [data-theme="xp"] .theme-chip { background: linear-gradient(180deg, #fff 0%, #ece9d8 100%); color: black; border-color: #0054e3; border-radius: 6px; }
+        [data-theme="xp"] .theme-chip.active { background: linear-gradient(180deg, #e3dfd0 0%, #fff 100%); font-weight: bold; }
+        
+        /* XP Profile Header Specifics */
+        [data-theme="xp"] .profile-header {
+            border: 1px solid #0054e3;
+            border-radius: 8px 8px 0 0;
+            background: #fff;
+            position: relative;
+            margin-top: 30px; /* Space for the header we will fake */
+            overflow: visible;
+        }
+        /* XP Header Bar for Profile */
+        [data-theme="xp"] .profile-header::before {
+            content: "mc_c0rp - Profile";
+            position: absolute; top: -28px; left: -1px; right: -1px; height: 28px;
+            background: linear-gradient(180deg, #2f71f0 0%, #0054e3 100%);
+            border-radius: 8px 8px 0 0;
+            color: white; font-weight: bold; padding-left: 10px;
+            display: flex; align-items: center;
+            border: 1px solid #0054e3; border-bottom: 2px solid #e68b2c;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+        }
+        /* XP Close Button for Profile */
+        [data-theme="xp"] .profile-header::after {
+            content: "✖";
+            position: absolute; top: -24px; right: 6px;
+            width: 20px; height: 20px;
+            background: #d62828; color: white;
+            border-radius: 3px; border: 1px solid white;
+            display: flex; align-items: center; justify-content: center; font-size: 12px;
+            box-shadow: 0 0 2px black;
+        }
         :root {
             --primary: #2563eb;
             --surface: #ffffff;
@@ -461,6 +648,8 @@
             <div class="theme-chip" onclick="switchTheme('retro', this)">RETRO</div>
             <div class="theme-chip" onclick="switchTheme('err', this)">ERR</div>
             <div class="theme-chip" onclick="switchTheme('red', this)">CODE: RED</div>
+            <div class="theme-chip" onclick="switchTheme('95', this)">WIN 95</div>
+            <div class="theme-chip" onclick="switchTheme('xp', this)">WIN XP</div> 
         </div>
 
         <div class="extra-controls">
@@ -636,7 +825,7 @@
 
 <script>
     // --- 1. THEME & COOKIE LOGIC ---
-    const THEMES = ['dark', 'light', 'neon', 'retro', 'err', 'red'];
+    const THEMES = ['dark', 'light', 'neon', 'retro', '95', 'xp', 'err', 'red'];
     let matrixEnabled = false;
     let sv_cheats = false;
 
